@@ -1,12 +1,40 @@
 import React from 'react';
-import { createUser } from '../services/userAPI';
+import { getUser } from '../services/userAPI';
+import Carregando from './Carregando';
 
 class Header extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      user: '',
+      loading: false,
+    };
+  }
+
+  async componentDidMount() {
+    // const funcGetUser = await getUser();
+    this.setState({
+      loading: true,
+    },
+    async () => {
+      const funcGetUser = await getUser();
+      this.setState({
+        user: funcGetUser.name,
+        loading: false,
+      });
+    });
+  }
+
   render() {
+    const { user, loading } = this.state;
     return (
       <header data-testid="header-component">
-        <p>Cabeçalho Header</p>
-        <p data-testid="header-user-name">{ createUser }</p>
+        { !loading ? (
+          <div>
+            <p>Cabeçalho Header</p>
+            <p data-testid="header-user-name">{ user }</p>
+          </div>
+        ) : <Carregando /> }
       </header>
     );
   }
