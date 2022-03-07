@@ -3,27 +3,23 @@ import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 import '../css/Header.css';
+import logo from '../images/logo.svg';
 
 class Header extends React.Component {
   constructor() {
     super();
     this.state = {
       user: '',
-      loading: false,
+      loading: true,
     };
   }
 
   async componentDidMount() {
     // const funcGetUser = await getUser();
+    const funcGetUser = await getUser();
     this.setState({
-      loading: true,
-    },
-    async () => {
-      const funcGetUser = await getUser();
-      this.setState({
-        user: funcGetUser.name,
-        loading: false,
-      });
+      user: funcGetUser.name,
+      loading: false,
     });
   }
 
@@ -31,8 +27,14 @@ class Header extends React.Component {
     const { user, loading } = this.state;
     return (
       <header data-testid="header-component">
+        <div className="header">
+          <img className="logo" src={ logo } alt="logo" />
+          <p className="user-name" data-testid="header-user-name">
+            { user }
+          </p>
+        </div>
         { !loading ? (
-          <div>
+          <div className="menu">
             <Link
               className="link"
               to="/search"
@@ -52,11 +54,10 @@ class Header extends React.Component {
             <Link
               className="link"
               to="/profile"
-              data-testis="link-to-profile"
+              data-testid="link-to-profile"
             >
               Profile
             </Link>
-            <p data-testid="header-user-name">{ user }</p>
           </div>
         ) : <Carregando /> }
       </header>

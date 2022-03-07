@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.logo {
+  margin-top: 200px
+}
+
+input {
+  height: 30px;
+  margin-bottom: 5px;
+  width: 300px;
+}
+
+button {
+  background-color: rgba(0, 59, 229, 1);
+  color: white;
+  height: 30px;
+  width: 300px;
+}

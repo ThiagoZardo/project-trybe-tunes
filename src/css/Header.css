@@ -4,15 +4,41 @@
   padding: 0;
 }
 
-header {
-  background-color: gray;
-  display: flexbox;
+.header {
+  background-color: rgba(2, 48, 49, 1);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.user-name {
+  align-content: center;
+  color: white;
+  margin-top: 50px;
+}
+
+.menu {
+  height: 40px;
+  margin-top: 20px;
   width: 100%;
 }
 
 .link {
-  display: flexbox;
+  color: rgba(2, 48, 49, 1);
   font-size: 25px;
-  padding: 10px;
+  margin-top: 100px;
+  padding: 10px 180px;
   text-decoration: none;
+}
+
+.link:hover {
+  background-color: rgba(3, 107, 82, 1);
+  color: white;
+  height: 60px;
+}
+
+.logo {
+  margin-bottom: 40px;
+  width: 150px;
 }
