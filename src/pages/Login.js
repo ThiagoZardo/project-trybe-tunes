@@ -44,7 +44,6 @@ class Login extends React.Component {
       <div data-testid="page-login">
         { !loading ? (
           <div>
-            <p>Login</p>
             <label htmlFor="loginInput">
               Nome
               <input
