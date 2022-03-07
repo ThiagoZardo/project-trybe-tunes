@@ -18,6 +18,7 @@ class Login extends React.Component {
   }
 
   // Imar Mendes me ajudou com a lógica de chamar uma callback dentro do setState e passar um novo state pra ele.
+
   btnLogin = async () => {
     const { user } = this.state;
     this.setState({
