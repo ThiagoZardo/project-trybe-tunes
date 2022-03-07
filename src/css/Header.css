@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: gray;
+  display: flexbox;
+  width: 100%;
+}
+
+.link {
+  display: flexbox;
+  font-size: 25px;
+  padding: 10px;
+  text-decoration: none;
+}
