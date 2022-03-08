@@ -18,12 +18,12 @@ class Album extends React.Component {
   }
 
   requestGetMusic = async () => {
-    const { match } = this.props;
-    const { id } = match.params;
+    const { match: { params: { id } } } = this.props;
     const response = await getMusics(id);
     const songs = response.filter((element) => element.kind === 'song');
     console.log(songs);
     console.log(response[0]);
+
     return this.setState({
       infosAlbum: response[0],
       songs,
