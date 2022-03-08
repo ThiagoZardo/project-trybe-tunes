@@ -28,7 +28,7 @@ class Search extends React.Component {
   }
 
   // Lucas Cabral me ajudou a entender melhor o retorno da função.
-  btnEnviar = () => {
+  btnPesquisar = () => {
     const { search } = this.state;
     this.setState({
       loading: true,
@@ -68,7 +68,7 @@ class Search extends React.Component {
             data-testid="search-artist-button"
             type="submit"
             disabled={ isButtonDisabled }
-            onClick={ this.btnEnviar }
+            onClick={ this.btnPesquisar }
           >
             Pesquisar
           </button>
