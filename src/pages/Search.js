@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Carregando from '../components/Carregando';
+import '../css/Search.css';
 
 class Search extends React.Component {
   constructor() {
@@ -56,6 +57,7 @@ class Search extends React.Component {
           <input
             data-testid="search-artist-input"
             type="text"
+            placeholder="Buscar por Artista ou Album..."
             onChange={ this.validation }
             value={ input }
           />
@@ -75,21 +77,25 @@ class Search extends React.Component {
           ? <Carregando />
           : (
             <div>
-              { `Resultado de álbuns de: ${search}` }
-              {
-                mySearch.map((element, index) => (
-                  <div key={ index } className="container-resultado">
-                    <Link
-                      data-testid={ `link-to-album-${element.collectionId}` }
-                      to={ `/album/${element.collectionId}` }
-                    >
-                      <img src={ element.artworkUrl100 } alt="capa" />
-                      <p>{ element.collectionName }</p>
-                      <p>{ element.artistName }</p>
-                    </Link>
-                  </div>
-                ))
-              }
+              <div className="resultados-da-busca">
+                { `Resultado de álbuns de: ${search}` }
+              </div>
+              <div className="container-resultado">
+                {
+                  mySearch.map((element, index) => (
+                    <div key={ index } className="card">
+                      <Link
+                        data-testid={ `link-to-album-${element.collectionId}` }
+                        to={ `/album/${element.collectionId}` }
+                      >
+                        <img src={ element.artworkUrl100 } alt="capa" />
+                        <p>{ element.collectionName }</p>
+                        <p>{ element.artistName }</p>
+                      </Link>
+                    </div>
+                  ))
+                }
+              </div>
             </div>
           )}
         { notFound === true && 'Nenhum álbum foi encontrado' }

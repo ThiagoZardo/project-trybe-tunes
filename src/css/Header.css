@@ -24,6 +24,7 @@ body {
 }
 
 .menu {
+  box-shadow: 10px 5px 5px rgba(3, 107, 82, 1);
   height: 40px;
   margin-top: 20px;
   max-width: 100%;
