@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import MusicCard from '../components/MusicCard';
+// import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
 
 class Album extends React.Component {
@@ -21,7 +21,7 @@ class Album extends React.Component {
   }
 
   render() {
-    const { collectionId } = this.props;
+    // const { collectionId } = this.props;
     return (
       <div data-testid="page-album">
         <Header />
