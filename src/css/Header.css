@@ -4,10 +4,15 @@
   padding: 0;
 }
 
+body {
+  height: 100%;
+}
+
 .header {
   background-color: rgba(2, 48, 49, 1);
   display: flex;
   flex-wrap: wrap;
+  height: 120px;
   justify-content: space-around;
   width: 100%;
 }
@@ -21,14 +26,14 @@
 .menu {
   height: 40px;
   margin-top: 20px;
-  width: 100%;
+  max-width: 100%;
 }
 
 .link {
   color: rgba(2, 48, 49, 1);
   font-size: 25px;
   margin-top: 100px;
-  padding: 10px 180px;
+  padding: 10px 10%;
   text-decoration: none;
 }
 
@@ -38,7 +43,8 @@
   height: 60px;
 }
 
-.logo {
-  margin-bottom: 40px;
-  width: 150px;
+.header img {
+  margin-top: 0;
+  width: 100px;
 }
+

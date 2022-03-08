@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Carregando from '../components/Carregando';
@@ -12,6 +13,7 @@ class Search extends React.Component {
       input: '',
       loading: false,
       mySearch: [],
+      notFound: false,
     };
   }
 
@@ -31,16 +33,21 @@ class Search extends React.Component {
       loading: true,
     }, async () => {
       const response = await searchAlbumsAPI(search);
+      if (response.length === 0) {
+        this.setState({
+          notFound: true,
+        });
+      }
       this.setState({
-        input: '',
         mySearch: response,
         loading: false,
+        input: '',
       });
     });
   }
 
   render() {
-    const { isButtonDisabled, search, loading, input, mySearch } = this.state;
+    const { isButtonDisabled, search, loading, input, mySearch, notFound } = this.state;
     return (
       <div data-testid="page-search">
         <Header />
@@ -70,16 +77,22 @@ class Search extends React.Component {
             <div>
               { `Resultado de álbuns de: ${search}` }
               {
-                mySearch.map((element) => (
-                  <div key={ element.artistId } className="container-resultado">
-                    <img src={ element.artworkUrl100 } alt="capa" />
-                    <p>{ element.collectionName }</p>
-                    <p>{ element.artistName }</p>
+                mySearch.map((element, index) => (
+                  <div key={ index } className="container-resultado">
+                    <Link
+                      data-testid={ `link-to-album-${element.collectionId}` }
+                      to={ `/album/${element.collectionId}` }
+                    >
+                      <img src={ element.artworkUrl100 } alt="capa" />
+                      <p>{ element.collectionName }</p>
+                      <p>{ element.artistName }</p>
+                    </Link>
                   </div>
                 ))
               }
             </div>
           )}
+        { notFound === true && 'Nenhum álbum foi encontrado' }
       </div>
     );
   }
