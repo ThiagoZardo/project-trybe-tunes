@@ -2,8 +2,19 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Carregando from './Carregando';
 import Inputs from './Inputs';
+import { getFavoriteSongs } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
+  componentDidMount() {
+    this.requestFavoriteSongs();
+  }
+
+  requestFavoriteSongs = async () => {
+    const returnGetFavoriteSongs = await getFavoriteSongs();
+    console.log(returnGetFavoriteSongs);
+    return returnGetFavoriteSongs;
+  }
+
   render() {
     const { songs, loading, addFavorite, favorites } = this.props;
     return (

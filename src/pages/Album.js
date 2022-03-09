@@ -23,9 +23,7 @@ class Album extends React.Component {
 
   addFavorite = async ({ target }) => {
     const { songs } = this.state;
-    console.log(songs);
     const targetObject = songs.find((element) => element.trackId === Number(target.id));
-    console.log(targetObject);
     if (target.checked) {
       this.setState((prevState) => ({
         favorites: [...prevState.favorites, targetObject.trackId],
