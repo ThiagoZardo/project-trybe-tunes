@@ -21,36 +21,38 @@ class Album extends React.Component {
     this.requestGetMusic(id);
   }
 
-  addFavorite = async ({ target }) => {
-    const { songs } = this.state;
-    const targetObject = songs.find((element) => element.trackId === Number(target.id));
-    if (target.checked) {
-      this.setState((prevState) => ({
-        favorites: [...prevState.favorites, targetObject.trackId],
-        loading: true,
-      }), this.stateLoading);
-    } else {
-      this.setState({
-        loading: true,
-      }, this.stateLoading);
-    }
-  }
-
-  stateLoading = async () => {
-    const { songs } = this.state;
-    await addSong(songs);
-    this.setState({
-      loading: false,
-    });
-  }
-
   requestGetMusic = async (id) => {
     const response = await getMusics(id);
     const songs = response.filter((element) => element.kind === 'song');
+    console.log(songs);
 
     return this.setState({
       infosAlbum: response[0],
       songs,
+    });
+  }
+
+  addFavorite = ({ target }) => {
+    const { songs } = this.state;
+    const targetObject = songs.find((element) => element.trackId === Number(target.id));
+    console.log(targetObject);
+    if (target.checked) {
+      this.setState((prevState) => ({
+        favorites: [...prevState.favorites, targetObject.trackId],
+        loading: true,
+      }), () => this.stateLoading(targetObject));
+    } else {
+      this.setState({
+        loading: true,
+      }, () => this.stateLoading(targetObject));
+    }
+  }
+
+  stateLoading = async (targetObject) => {
+    // const { songs } = this.state;
+    await addSong(targetObject);
+    this.setState({
+      loading: false,
     });
   }
 

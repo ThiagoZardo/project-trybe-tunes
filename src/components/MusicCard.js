@@ -11,10 +11,12 @@ class MusicCard extends React.Component {
 
   requestFavoriteSongs = async () => {
     const returnGetFavoriteSongs = await getFavoriteSongs();
-    console.log(returnGetFavoriteSongs);
     return returnGetFavoriteSongs;
   }
 
+  // Obtive ajuda para fazer o requisito 08 das seguintes pessoas:
+  // 1- Sugano me ajudou com as sintaxes para separar o componente Input deixando o código mais organizado.
+  // 2- Lais Nametala me ajudou também com um bug onde
   render() {
     const { songs, loading, addFavorite, favorites } = this.props;
     return (
