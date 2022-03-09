@@ -30,6 +30,8 @@ class MusicCard extends React.Component {
   // Obtive ajuda para fazer o requisito 08 das seguintes pessoas:
   // 1- Sugano me ajudou com as sintaxes para separar o componente Input deixando o código mais organizado.
   // 2- Lais Nametala me ajudou também com um bug.
+
+  // Para o requisito 09 precisei da ajuda do Gabriel na monitoria para conseguir concluir minha lógica.
   render() {
     const { songs, loading, addFavorite, favorites } = this.props;
     const { load, listFavorite } = this.state;
