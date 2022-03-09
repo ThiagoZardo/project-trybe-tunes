@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 
 class Inputs extends React.Component {
   render() {
-    const { previewUrl, trackId, trackName, addFavorite, favorites } = this.props;
+    const {
+      previewUrl, trackId, trackName, addFavorite, listFavorite, favorites,
+    } = this.props;
+
     return (
       <div>
         { trackName }
@@ -20,7 +23,8 @@ class Inputs extends React.Component {
             <input
               data-testid={ `checkbox-music-${trackId}` }
               type="checkbox"
-              checked={ favorites.includes(trackId) }
+              checked={ favorites.includes(trackId) || listFavorite
+                .some((itemFavorite) => itemFavorite.trackId === trackId) }
               onChange={ addFavorite }
               id={ trackId }
             />
@@ -33,6 +37,7 @@ class Inputs extends React.Component {
 
 Inputs.propTypes = {
   addFavorite: PropTypes.func.isRequired,
+  listFavorite: PropTypes.arrayOf(PropTypes.object).isRequired,
   favorites: PropTypes.arrayOf(PropTypes.object).isRequired,
   previewUrl: PropTypes.string.isRequired,
   trackId: PropTypes.number.isRequired,

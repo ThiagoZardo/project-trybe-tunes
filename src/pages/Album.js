@@ -24,7 +24,6 @@ class Album extends React.Component {
   requestGetMusic = async (id) => {
     const response = await getMusics(id);
     const songs = response.filter((element) => element.kind === 'song');
-    console.log(songs);
 
     return this.setState({
       infosAlbum: response[0],
