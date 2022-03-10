@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import MusicCard from '../components/MusicCard';
 import getMusics from '../services/musicsAPI';
-import { addSong } from '../services/favoriteSongsAPI';
+import { addSong, removeSong } from '../services/favoriteSongsAPI';
 
 class Album extends React.Component {
   constructor() {
@@ -31,19 +31,24 @@ class Album extends React.Component {
     });
   }
 
-  addFavorite = ({ target }) => {
+  addFavorite = async ({ target }) => {
     const { songs } = this.state;
     const targetObject = songs.find((element) => element.trackId === Number(target.id));
-    console.log(targetObject);
     if (target.checked) {
       this.setState((prevState) => ({
         favorites: [...prevState.favorites, targetObject.trackId],
         loading: true,
       }), () => this.stateLoading(targetObject));
     } else {
-      this.setState({
+      this.setState((prevState) => ({
+        favorites:
+          prevState.favorites.filter((element) => element !== targetObject.trackId),
         loading: true,
-      }, () => this.stateLoading(targetObject));
+      }));
+      await removeSong(targetObject);
+      this.setState({
+        loading: false,
+      });
     }
   }
 
