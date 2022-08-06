@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getUser } from '../services/userAPI';
 import Carregando from './Carregando';
 import '../css/Header.css';
-import logo from '../images/logo.svg';
+import logo from '../images/logoHeader.png';
 
 class Header extends React.Component {
   constructor() {
@@ -29,9 +29,11 @@ class Header extends React.Component {
       <header data-testid="header-component">
         <div className="header">
           <img className="logo" src={ logo } alt="logo" />
-          <p className="user-name" data-testid="header-user-name">
-            { user }
-          </p>
+          <div className="user">
+            <p className="user-name" data-testid="header-user-name">
+              { user }
+            </p>
+          </div>
         </div>
         { !loading ? (
           <div className="menu">
